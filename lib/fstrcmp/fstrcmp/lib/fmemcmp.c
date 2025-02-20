@@ -58,6 +58,9 @@
 # define uintptr_t unsigned long
 #endif
 
+#ifdef NXDK
+#define ssize_t size_t
+#endif
 
 #define ELEMENT char
 #define EQUAL(x,y) ((x) == (y))
