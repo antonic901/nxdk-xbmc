@@ -273,7 +273,7 @@ locale_charset ()
   const char *codeset;
   const char *aliases;
 
-#if !(defined WIN32 || defined OS2)
+#if !(defined WIN32 || defined OS2) || defined(NXDK)
 
 # if HAVE_LANGINFO_CODESET
 
