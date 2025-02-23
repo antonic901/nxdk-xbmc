@@ -16,7 +16,7 @@
 #  include <exception>
 #endif
 
-#if defined(_WIN32) && !defined(FMT_USE_WRITE_CONSOLE)
+#if defined(_WIN32) && !defined(FMT_USE_WRITE_CONSOLE) && !defined(NXDK)
 #  include <io.h>  // _isatty
 #endif
 
