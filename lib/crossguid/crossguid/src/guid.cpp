@@ -388,6 +388,31 @@ Guid newGuid()
 }
 #endif
 
+// NXDK version for Original Xbox
+#if defined(NXDK)
+Guid newGuid()
+{
+	// based on https://github.com/xbmc/xbmc/blob/Isengard/xbmc/utils/StringUtils.cpp#L1074
+	static bool m_uuidInitialized = false;
+	if (!m_uuidInitialized)
+	{
+		srand(time(NULL));
+		m_uuidInitialized = true;
+	}
+
+	std::array<unsigned char, 16> bytes;
+	for (int i = 0; i < 16; i++)
+	{
+		bytes[i] = static_cast<unsigned char>(rand() % 256);
+	}
+
+	// Set UUID version (4) and variant (RFC 4122 compliant)
+	bytes[6] = (bytes[6] & 0x0F) | 0x40; // Version 4 (random)
+	bytes[8] = (bytes[8] & 0x3F) | 0x80; // Variant (RFC 4122)
+
+	return Guid{std::move(bytes)};
+}
+#endif
 
 END_XG_NAMESPACE
 
