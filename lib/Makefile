@@ -14,4 +14,5 @@ include $(NXDK_DIR)/lib/fribidi/Makefile
 include $(NXDK_DIR)/lib/fstrcmp/Makefile
 include $(NXDK_DIR)/lib/libiconv/Makefile
 include $(NXDK_DIR)/lib/pcre/Makefile
+include $(NXDK_DIR)/lib/sqlite/Makefile
 include $(NXDK_DIR)/lib/tinyxml/Makefile
