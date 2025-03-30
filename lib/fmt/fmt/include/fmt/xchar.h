@@ -292,6 +292,7 @@ inline auto formatted_size(const S& fmt, T&&... args) -> size_t {
   return buf.count();
 }
 
+#ifndef NXDK
 inline void vprint(std::FILE* f, wstring_view fmt, wformat_args args) {
   auto buf = wmemory_buffer();
   detail::vformat_to(buf, fmt, args);
@@ -303,6 +304,7 @@ inline void vprint(std::FILE* f, wstring_view fmt, wformat_args args) {
 inline void vprint(wstring_view fmt, wformat_args args) {
   vprint(stdout, fmt, args);
 }
+#endif
 
 template <typename... T>
 void print(std::FILE* f, wformat_string<T...> fmt, T&&... args) {

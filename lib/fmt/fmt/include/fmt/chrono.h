@@ -556,7 +556,7 @@ inline auto localtime(std::time_t time) -> std::tm {
 
     inline auto fallback(int res) -> bool { return res == 0; }
 
-#if !FMT_MSC_VERSION
+#if !FMT_MSC_VERSION || defined(NXDK)
     inline auto fallback(detail::null<>) -> bool {
       using namespace fmt::detail;
       std::tm* tm = std::localtime(&time_);
@@ -607,7 +607,7 @@ inline auto gmtime(std::time_t time) -> std::tm {
 
     inline auto fallback(int res) -> bool { return res == 0; }
 
-#if !FMT_MSC_VERSION
+#if !FMT_MSC_VERSION || defined(NXDK)
     inline auto fallback(detail::null<>) -> bool {
       std::tm* tm = std::gmtime(&time_);
       if (tm) tm_ = *tm;

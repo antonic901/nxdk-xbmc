@@ -12,7 +12,7 @@
 #  include <fstream>  // std::filebuf
 #endif
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(NXDK)
 #  ifdef __GLIBCXX__
 #    include <ext/stdio_filebuf.h>
 #    include <ext/stdio_sync_filebuf.h>
@@ -127,7 +127,7 @@ inline void vprint(std::ostream& os, string_view fmt, format_args args) {
   else if (auto* fbuf = dynamic_cast<__gnu_cxx::stdio_filebuf<char>*>(rdbuf))
     f = fbuf->file();
 #endif
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(NXDK)
   if (f) {
     int fd = _fileno(f);
     if (_isatty(fd)) {
